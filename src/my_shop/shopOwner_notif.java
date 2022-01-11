@@ -8,6 +8,9 @@ package my_shop;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.*;
+import java.io.*;
+import java.util.*;
+
 /**
  *
  * @author Abrar Faiyaz Khan
@@ -38,12 +41,12 @@ public class shopOwner_notif extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
         LogOut = new javax.swing.JButton();
         Back = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        notifiE = new javax.swing.JTextField();
+        notifiP = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -71,16 +74,6 @@ public class shopOwner_notif extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Sylfaen", 1, 20)); // NOI18N
         jLabel9.setText("me");
 
-        jTextPane1.setEditable(false);
-        jTextPane1.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jTextPane1.setText("<05/01/2022 @ 05:31 PM> \tKono shop raat 11 tar por khola rakha jabe na\n\n<06/01/2022 @ 09:10 PM>\tShop off korar shomoy konokisu on kore rakhle next day te jorimana kora hobe");
-        jScrollPane1.setViewportView(jTextPane1);
-
-        jTextPane2.setEditable(false);
-        jTextPane2.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jTextPane2.setText("<05/01/2022 @ 5:31 PM>\tApni vara den na ken miya? Apnake ar 1 din time dilam. Er moddhe vara na dile dokan uthay dibo");
-        jScrollPane2.setViewportView(jTextPane2);
-
         LogOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         LogOut.setText("Log out");
         LogOut.addActionListener(new java.awt.event.ActionListener() {
@@ -97,26 +90,20 @@ public class shopOwner_notif extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        notifiE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notifiEActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(249, 249, 249)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel9))))
-                .addContainerGap(82, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -131,6 +118,28 @@ public class shopOwner_notif extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(LogOut, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(31, 31, 31))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(notifiE, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(249, 249, 249)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel7))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel9))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(62, 62, 62)
+                                    .addComponent(notifiP, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(57, 57, 57)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,16 +165,21 @@ public class shopOwner_notif extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addComponent(notifiE, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(notifiP)))
                 .addGap(18, 18, 18)
                 .addComponent(Back)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 562));
@@ -195,6 +209,27 @@ public class shopOwner_notif extends javax.swing.JFrame {
         shopowner.setResizable(false);
         dispose();
     }//GEN-LAST:event_BackActionPerformed
+
+    private void notifiEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifiEActionPerformed
+        // TODO add your handling code here:
+        try{
+            FileReader fr=new FileReader("src\\database1.csv");
+            BufferedReader br= new BufferedReader(fr);
+            String line;
+            while((line=br.readLine())!=null){
+                String [] arr=line.split(",");
+                if(arr[0].equals("all")){
+                    notifiE.setText(arr[1]);
+                }
+            }
+            
+        }catch(FileNotFoundException ex){
+            
+        }
+        catch(IOException ex){
+            
+        }
+    }//GEN-LAST:event_notifiEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,7 +263,7 @@ public class shopOwner_notif extends javax.swing.JFrame {
             public void run() {
                 new shopOwner_notif().setVisible(true);
             }
-        });
+        });     
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -241,10 +276,10 @@ public class shopOwner_notif extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel label_notif;
+    private javax.swing.JTextField notifiE;
+    private javax.swing.JTextField notifiP;
     // End of variables declaration//GEN-END:variables
 }
