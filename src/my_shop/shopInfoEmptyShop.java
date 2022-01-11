@@ -222,9 +222,14 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
 
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
         // TODO add your handling code here:
-        confirmation lgn = new confirmation();
-        lgn.setVisible(true);
-        lgn.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        int n = JOptionPane.showConfirmDialog(this, "Would you like to log out?","",JOptionPane.YES_NO_OPTION);
+        if(n==0) {
+            loginPage lPage = new loginPage();
+            lPage.setVisible(true);
+            lPage.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            lPage.setResizable(false);
+            dispose();  
+        }
         //dispose();
     }//GEN-LAST:event_logOutActionPerformed
 

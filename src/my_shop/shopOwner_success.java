@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package my_shop;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -29,7 +33,7 @@ public class shopOwner_success extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         success = new javax.swing.JLabel();
-        ok = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -42,8 +46,13 @@ public class shopOwner_success extends javax.swing.JFrame {
         success.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         success.setText("Payment Successful !");
 
-        ok.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        ok.setText("OK");
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -55,17 +64,17 @@ public class shopOwner_success extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ok)
-                .addGap(58, 58, 58))
+                .addComponent(jButton1)
+                .addGap(56, 56, 56))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(success)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ok)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(jButton1)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 183));
@@ -73,6 +82,15 @@ public class shopOwner_success extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+//        shopOwner shopowner = new shopOwner();
+//            shopowner.setVisible(true);
+//            shopowner.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//            shopowner.setResizable(false);
+            dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,8 +128,8 @@ public class shopOwner_success extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton ok;
     private javax.swing.JLabel success;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,9 @@
  */
 package my_shop;
 
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+import javax.swing.*;
 /**
  *
  * @author Abrar Faiyaz Khan
@@ -173,17 +176,23 @@ public class shopOwner_notif extends javax.swing.JFrame {
     
     private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
         // TODO add your handling code here:
-        confirmation conf = new confirmation();
-        conf.setVisible(true);
-        
-        if(conf.x == true) {
-//            conf.dispose();
-            dispose();
+        int n = JOptionPane.showConfirmDialog(this, "Would you like to log out?","",JOptionPane.YES_NO_OPTION);
+        if(n==0) {
+            loginPage lPage = new loginPage();
+            lPage.setVisible(true);
+            lPage.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            lPage.setResizable(false);
+            dispose();  
         }
     }//GEN-LAST:event_LogOutActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
+        
+        shopOwner shopowner = new shopOwner();
+        shopowner.setVisible(true);
+        shopowner.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        shopowner.setResizable(false);
         dispose();
     }//GEN-LAST:event_BackActionPerformed
 

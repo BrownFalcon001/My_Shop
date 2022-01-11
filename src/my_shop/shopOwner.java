@@ -240,9 +240,14 @@ public class shopOwner extends javax.swing.JFrame {
 
     private void ownerLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerLogoutActionPerformed
         // TODO add your handling code here:
-        loginPage login = new loginPage();
-        login.setVisible(true);
-        dispose();
+        int n = JOptionPane.showConfirmDialog(this, "Would you like to log out?","",JOptionPane.YES_NO_OPTION);
+        if(n==0) {
+            loginPage lPage = new loginPage();
+            lPage.setVisible(true);
+            lPage.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+            lPage.setResizable(false);
+            dispose();  
+        }
     }//GEN-LAST:event_ownerLogoutActionPerformed
 
     private void changeName(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_changeName
@@ -262,12 +267,18 @@ public class shopOwner extends javax.swing.JFrame {
         // TODO add your handling code here:
         Complain comp = new Complain();
         comp.setVisible(true);
+        comp.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        comp.setResizable(false);
+        dispose();
     }//GEN-LAST:event_placeComplaintActionPerformed
 
     private void notifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifActionPerformed
         // TODO add your handling code here:
         shopOwner_notif notif = new shopOwner_notif();
         notif.setVisible(true);
+        notif.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        notif.setResizable(false);
+        dispose();
     }//GEN-LAST:event_notifActionPerformed
 
     /**
