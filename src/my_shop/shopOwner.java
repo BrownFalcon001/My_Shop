@@ -5,6 +5,8 @@
  */
 package my_shop;
 
+import javax.swing.*;
+
 /**
  *
  * @author Abrar Faiyaz Khan
@@ -32,20 +34,20 @@ public class shopOwner extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         panel_owner = new javax.swing.JPanel();
         label_head = new javax.swing.JLabel();
-        label_username = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        owner_usename = new javax.swing.JLabel();
+        payRent = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        ownerLogout = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        owner_rent = new javax.swing.JLabel();
+        owner_dueRent = new javax.swing.JLabel();
+        placeComplaint = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        owner_shopName = new javax.swing.JLabel();
+        notif = new javax.swing.JButton();
 
         jButton9.setText("jButton9");
 
@@ -59,26 +61,31 @@ public class shopOwner extends javax.swing.JFrame {
         label_head.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_head.setText("Shop Owner");
 
-        label_username.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
-        label_username.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        label_username.setText("owner11");
-        label_username.addKeyListener(new java.awt.event.KeyAdapter() {
+        owner_usename.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
+        owner_usename.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        owner_usename.setText("owner11");
+        owner_usename.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 changeName(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Pay Rent");
+        payRent.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        payRent.setText("Pay Rent");
+        payRent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payRentActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setText("Place Complaint");
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton7.setText("Log Out");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        ownerLogout.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ownerLogout.setText("Log Out");
+        ownerLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                ownerLogoutActionPerformed(evt);
             }
         });
 
@@ -86,51 +93,62 @@ public class shopOwner extends javax.swing.JFrame {
         jButton8.setText("Leave Shop");
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jLabel1.setText("Due Rents              :");
+        jLabel1.setText("Due Rent               :");
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my_shop/logo.png"))); // NOI18N
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my_shop/notification.png"))); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel6.setText("Rent                      :");
 
-        jLabel7.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel7.setText("30000");
+        owner_rent.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        owner_rent.setText("30000");
 
-        jLabel8.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel8.setText("60000");
+        owner_dueRent.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        owner_dueRent.setText("60000");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Place Complaint");
+        placeComplaint.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        placeComplaint.setText("Place Complaint");
+        placeComplaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placeComplaintActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel2.setText("Shop Name             :");
 
-        jLabel9.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel9.setText("30000");
+        owner_shopName.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        owner_shopName.setText("shop11");
+
+        notif.setBackground(new java.awt.Color(50, 196, 210));
+        notif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my_shop/notification.png"))); // NOI18N
+        notif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notifActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_ownerLayout = new javax.swing.GroupLayout(panel_owner);
         panel_owner.setLayout(panel_ownerLayout);
         panel_ownerLayout.setHorizontalGroup(
             panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_ownerLayout.createSequentialGroup()
-                .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panel_ownerLayout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
+                .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panel_ownerLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(147, 147, 147)
-                        .addComponent(label_head, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label_head, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel_ownerLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(notif, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_username, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7))))
+                            .addComponent(owner_usename, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ownerLogout))))
                 .addGap(22, 22, 22))
             .addGroup(panel_ownerLayout.createSequentialGroup()
                 .addGap(227, 227, 227)
@@ -141,19 +159,19 @@ public class shopOwner extends javax.swing.JFrame {
                             .addComponent(jLabel6))
                         .addGap(29, 29, 29)
                         .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(owner_rent, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(owner_dueRent, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(panel_ownerLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9)))
+                        .addComponent(owner_shopName)))
                 .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_ownerLayout.createSequentialGroup()
                         .addGap(61, 61, 61)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(payRent, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_ownerLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(placeComplaint, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_ownerLayout.setVerticalGroup(
@@ -161,27 +179,27 @@ public class shopOwner extends javax.swing.JFrame {
             .addGroup(panel_ownerLayout.createSequentialGroup()
                 .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_ownerLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(label_username, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7))
-                    .addGroup(panel_ownerLayout.createSequentialGroup()
                         .addGap(39, 39, 39)
                         .addComponent(label_head, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_ownerLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_ownerLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel5)))
+                        .addGap(42, 42, 42)
+                        .addComponent(owner_usename, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ownerLogout))
+                    .addGroup(panel_ownerLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(notif, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel9))
+                    .addComponent(owner_shopName))
                 .addGap(37, 37, 37)
                 .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(owner_rent))
                 .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_ownerLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
@@ -198,10 +216,10 @@ public class shopOwner extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jLabel8)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(owner_dueRent)
+                            .addComponent(payRent, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(44, 44, 44)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(placeComplaint, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -220,13 +238,37 @@ public class shopOwner extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void ownerLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerLogoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+        loginPage login = new loginPage();
+        login.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ownerLogoutActionPerformed
 
     private void changeName(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_changeName
         // TODO add your handling code here:
     }//GEN-LAST:event_changeName
+
+    private void payRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payRentActionPerformed
+        // TODO add your handling code here:
+        PayRent pay = new PayRent();
+        pay.setVisible(true);
+//        pay.setResizable(false);
+//        pay.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        pay.dispose();
+    }//GEN-LAST:event_payRentActionPerformed
+
+    private void placeComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeComplaintActionPerformed
+        // TODO add your handling code here:
+        Complain comp = new Complain();
+        comp.setVisible(true);
+    }//GEN-LAST:event_placeComplaintActionPerformed
+
+    private void notifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifActionPerformed
+        // TODO add your handling code here:
+        shopOwner_notif notif = new shopOwner_notif();
+        notif.setVisible(true);
+    }//GEN-LAST:event_notifActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,6 +297,12 @@ public class shopOwner extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -267,22 +315,22 @@ public class shopOwner extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel label_head;
-    private javax.swing.JLabel label_username;
+    private javax.swing.JButton notif;
+    private javax.swing.JButton ownerLogout;
+    private javax.swing.JLabel owner_dueRent;
+    private javax.swing.JLabel owner_rent;
+    private javax.swing.JLabel owner_shopName;
+    private javax.swing.JLabel owner_usename;
     private javax.swing.JPanel panel_owner;
+    private javax.swing.JButton payRent;
+    private javax.swing.JButton placeComplaint;
     // End of variables declaration//GEN-END:variables
 }

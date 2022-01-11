@@ -44,6 +44,11 @@ public class shopOwner_success extends javax.swing.JFrame {
 
         OK.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         OK.setText("OK");
+        OK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,6 +78,11 @@ public class shopOwner_success extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void OKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_OKActionPerformed
 
     /**
      * @param args the command line arguments

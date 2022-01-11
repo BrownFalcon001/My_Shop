@@ -10,7 +10,7 @@ package my_shop;
  * @author Abrar Faiyaz Khan
  */
 public class confirmation extends javax.swing.JFrame {
-
+    boolean x = false;
     /**
      * Creates new form shopOwner_rmvemployee
      */
@@ -29,8 +29,8 @@ public class confirmation extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        yes = new javax.swing.JButton();
+        no = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -41,14 +41,19 @@ public class confirmation extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Are you sure?");
 
-        jButton1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jButton1.setText("Yes");
-
-        jButton2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jButton2.setText("No");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        yes.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        yes.setText("Yes");
+        yes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                yesActionPerformed(evt);
+            }
+        });
+
+        no.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        no.setText("No");
+        no.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                noActionPerformed(evt);
             }
         });
 
@@ -60,9 +65,9 @@ public class confirmation extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(94, 94, 94)
-                        .addComponent(jButton1)
+                        .addComponent(yes)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton2))
+                        .addComponent(no))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -75,8 +80,8 @@ public class confirmation extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(yes)
+                    .addComponent(no))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
 
@@ -99,9 +104,16 @@ public class confirmation extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_noActionPerformed
+
+    private void yesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesActionPerformed
+        // TODO add your handling code here:
+        x = true;
+        
+    }//GEN-LAST:event_yesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,9 +154,9 @@ public class confirmation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    public javax.swing.JButton no;
+    public javax.swing.JButton yes;
     // End of variables declaration//GEN-END:variables
 }
