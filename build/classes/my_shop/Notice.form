@@ -236,11 +236,24 @@
               <Font name="Sylfaen" size="14" style="0"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="17">
                 <StringItem index="0" value="all"/>
-                <StringItem index="1" value="shop1"/>
-                <StringItem index="2" value="shop2"/>
-                <StringItem index="3" value="shop3"/>
+                <StringItem index="1" value="shop11"/>
+                <StringItem index="2" value="shop12"/>
+                <StringItem index="3" value="shop13"/>
+                <StringItem index="4" value="shop14"/>
+                <StringItem index="5" value="shop21"/>
+                <StringItem index="6" value="shop22"/>
+                <StringItem index="7" value="shop23"/>
+                <StringItem index="8" value="shop24"/>
+                <StringItem index="9" value="shop31"/>
+                <StringItem index="10" value="shop32"/>
+                <StringItem index="11" value="shop33"/>
+                <StringItem index="12" value="shop34"/>
+                <StringItem index="13" value="shop41"/>
+                <StringItem index="14" value="shop42"/>
+                <StringItem index="15" value="shop43"/>
+                <StringItem index="16" value="shop44"/>
               </StringArray>
             </Property>
           </Properties>

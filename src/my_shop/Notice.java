@@ -123,7 +123,7 @@ public class Notice extends javax.swing.JFrame {
         });
 
         comboName.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        comboName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all", "shop1", "shop2", "shop3" }));
+        comboName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all", "shop11", "shop12", "shop13", "shop14", "shop21", "shop22", "shop23", "shop24", "shop31", "shop32", "shop33", "shop34", "shop41", "shop42", "shop43", "shop44" }));
         comboName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboNameActionPerformed(evt);

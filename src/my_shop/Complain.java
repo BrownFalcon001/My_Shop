@@ -211,7 +211,7 @@ public class Complain extends javax.swing.JFrame {
         String name = userName.getText();
         String complain = ComplainText.getText();
         
-        try (FileWriter writer = new FileWriter("src\\my_shop\\Complain.csv",true)) {
+        try (FileWriter writer = new FileWriter("src//Complain.csv",true)) {
             
             writer.write(name+","+complain+"\n");
             ComplainText.setText("");

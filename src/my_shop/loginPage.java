@@ -187,15 +187,20 @@ public class loginPage extends javax.swing.JFrame {
         else if(pass.equals("")&uname.equals("")) {
             Component icon = null;
             JOptionPane.showMessageDialog(icon, "Fill the Username and the Password", "Error", JOptionPane.ERROR_MESSAGE);
+            username.setText("");
+            password.setText("");
         }
         else if(pass.equals("")) {
             Component icon = null;
             JOptionPane.showMessageDialog(icon, "Fill the Password", "Error", JOptionPane.ERROR_MESSAGE);
-            
+            username.setText("");
+            password.setText("");
         }
         else if(uname.equals("")) {
             Component icon = null;
             JOptionPane.showMessageDialog(icon, "Fill the Username", "Error", JOptionPane.ERROR_MESSAGE);
+            username.setText("");
+            password.setText("");
         }
         else {
             try {
@@ -227,12 +232,18 @@ public class loginPage extends javax.swing.JFrame {
                 else if (!matched) {
                     JFrame f = new JFrame();
                     JOptionPane.showMessageDialog(f, "User Name Or Password isn't correct", "Error", JOptionPane.ERROR_MESSAGE);
+                    username.setText("");
+                    password.setText("");
                 }
 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+                username.setText("");
+                password.setText("");
             } catch (IOException ex) {
                 Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+                username.setText("");
+                password.setText("");
             }
         }
     }//GEN-LAST:event_loginActionPerformed
