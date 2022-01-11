@@ -29,7 +29,7 @@ public class shopOwner_success extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         success = new javax.swing.JLabel();
-        OK = new javax.swing.JButton();
+        ok = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -42,8 +42,8 @@ public class shopOwner_success extends javax.swing.JFrame {
         success.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         success.setText("Payment Successful !");
 
-        OK.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        OK.setText("OK");
+        ok.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        ok.setText("OK");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -55,7 +55,7 @@ public class shopOwner_success extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(OK)
+                .addComponent(ok)
                 .addGap(58, 58, 58))
         );
         jPanel1Layout.setVerticalGroup(
@@ -64,7 +64,7 @@ public class shopOwner_success extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addComponent(success)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OK)
+                .addComponent(ok)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
@@ -110,8 +110,8 @@ public class shopOwner_success extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton OK;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton ok;
     private javax.swing.JLabel success;
     // End of variables declaration//GEN-END:variables
 }
