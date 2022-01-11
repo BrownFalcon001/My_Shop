@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -57,11 +58,11 @@ public class Notice extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        noticeSt = new javax.swing.JTextArea();
         send = new javax.swing.JButton();
         back = new javax.swing.JButton();
         logout = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboName = new javax.swing.JComboBox<>();
         notifi = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -92,10 +93,10 @@ public class Notice extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         jLabel5.setText("To:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        noticeSt.setColumns(20);
+        noticeSt.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        noticeSt.setRows(5);
+        jScrollPane1.setViewportView(noticeSt);
 
         send.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         send.setText("Send");
@@ -121,8 +122,13 @@ public class Notice extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all", "shop1", "shop2", "shop3" }));
+        comboName.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        comboName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "all", "shop1", "shop2", "shop3" }));
+        comboName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboNameActionPerformed(evt);
+            }
+        });
 
         notifi.setBackground(new java.awt.Color(50, 190, 210));
         notifi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my_shop/notification.png"))); // NOI18N
@@ -157,7 +163,7 @@ public class Notice extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addGap(36, 36, 36)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 264, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -184,7 +190,7 @@ public class Notice extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(comboName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel1))))
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,7 +198,7 @@ public class Notice extends javax.swing.JFrame {
                 .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -216,6 +222,16 @@ public class Notice extends javax.swing.JFrame {
 
     private void sendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendActionPerformed
         // TODO add your handling code here:
+        String comName = (String)comboName.getSelectedItem();
+        //String value = comboName.getSelectedItem().toString();
+        String notice = noticeSt.getText();
+        try(FileWriter fw=new FileWriter("src\\database1.csv",true)){
+            fw.write(comName+","+notice+"\n");
+            noticeSt.setText("");
+        }
+        catch(IOException ex){
+            
+        }
     }//GEN-LAST:event_sendActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
@@ -246,6 +262,10 @@ public class Notice extends javax.swing.JFrame {
         nt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         dispose();
     }//GEN-LAST:event_notifiActionPerformed
+
+    private void comboNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,7 +304,7 @@ public class Notice extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> comboName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -292,8 +312,8 @@ public class Notice extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton logout;
+    private javax.swing.JTextArea noticeSt;
     private javax.swing.JButton notifi;
     private javax.swing.JButton send;
     // End of variables declaration//GEN-END:variables
