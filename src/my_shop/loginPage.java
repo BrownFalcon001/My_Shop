@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package my_shop;
-
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 /**
  *
  * @author spifu
@@ -31,10 +33,10 @@ public class loginPage extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,10 +72,10 @@ public class loginPage extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Sylfaen", 1, 40)); // NOI18N
         jLabel2.setText("Login");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        username.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                usernameActionPerformed(evt);
             }
         });
 
@@ -83,15 +85,20 @@ public class loginPage extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel4.setText("Password    :");
 
-        jPasswordField1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        password.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                passwordActionPerformed(evt);
             }
         });
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Login");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,8 +121,8 @@ public class loginPage extends javax.swing.JFrame {
                                     .addComponent(jLabel4))
                                 .addGap(54, 54, 54)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                                    .addComponent(jPasswordField1))))
+                                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                                    .addComponent(password))))
                         .addGap(105, 105, 105))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -128,10 +135,10 @@ public class loginPage extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(45, 45, 45)
                         .addComponent(jButton1))
@@ -145,13 +152,48 @@ public class loginPage extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_usernameActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_passwordActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String uname = username.getText();
+        String pass = password.getText();
+        if(uname.equals("admin")&pass.equals("admin")) {
+            adminProfile hProfile = new adminProfile();
+            hProfile.setVisible(true);
+//            hProfile.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//            hProfile.setResizable(false);
+            dispose();
+        }
+        else if(uname.equals("user11")&pass.equals("1234")) {
+            shopOwner sOwner = new shopOwner();
+            sOwner.setVisible(true);
+            dispose();
+        }
+        else if(pass.equals("")&uname.equals("")) {
+            Component icon = null;
+            JOptionPane.showMessageDialog(icon, "Fill the Username and the Password", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(pass.equals("")) {
+            Component icon = null;
+            JOptionPane.showMessageDialog(icon, "Fill the Password", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
+        else if(uname.equals("")) {
+            Component icon = null;
+            JOptionPane.showMessageDialog(icon, "Fill the Username", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            Component icon = null;
+            JOptionPane.showMessageDialog(icon, "Username or Password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,7 +238,7 @@ public class loginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

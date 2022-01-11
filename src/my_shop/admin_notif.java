@@ -5,6 +5,29 @@
  */
 package my_shop;
 
+
+import java.awt.Component;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+//import javax.mail.Authenticator;
+//import javax.mail.Message;
+//import javax.mail.MessagingException;
+//import javax.mail.PasswordAuthentication;
+//import javax.mail.Session;
+//import javax.mail.Transport;
+//import javax.mail.internet.AddressException;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeMessage;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+
 /**
  *
  * @author Abrar Faiyaz Khan
@@ -33,8 +56,8 @@ public class admin_notif extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        logOut = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -55,11 +78,21 @@ public class admin_notif extends javax.swing.JFrame {
         jTextPane1.setText("<05/01/2022 @ 5:31 PM> From shop11\n\tLift noshto. Taratari thik koren......\n\n\n<05/01/2022 @ 6:31 PM> From shop11\n\tPanir line e problem. Moyla pani ashe. Line fix koren fast....");
         jScrollPane1.setViewportView(jTextPane1);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Log out");
+        logOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        logOut.setText("Log out");
+        logOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOutActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("< Back");
+        back.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        back.setText("< Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -72,7 +105,7 @@ public class admin_notif extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(logOut, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -81,7 +114,7 @@ public class admin_notif extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(122, 122, 122))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(back)
                         .addGap(46, 46, 46))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,12 +132,12 @@ public class admin_notif extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)))
+                                .addComponent(logOut)))
                         .addGap(60, 60, 60)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
-                .addComponent(jButton2)
+                .addComponent(back)
                 .addGap(50, 50, 50))
         );
 
@@ -113,6 +146,22 @@ public class admin_notif extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        // TODO add your handling code here:
+        adminProfile ap = new adminProfile();
+        ap.setVisible(true);
+        ap.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        dispose();
+    }//GEN-LAST:event_backActionPerformed
+
+    private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
+        // TODO add your handling code here:
+        confirmation lgn = new confirmation();
+        lgn.setVisible(true);
+        lgn.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //dispose();
+    }//GEN-LAST:event_logOutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,13 +200,13 @@ public class admin_notif extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JButton logOut;
     // End of variables declaration//GEN-END:variables
 }
