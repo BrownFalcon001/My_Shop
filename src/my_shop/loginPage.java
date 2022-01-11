@@ -7,6 +7,18 @@ package my_shop;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.*;
+import java.util.*;
+import javax.swing.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import java.io.FileWriter; 
+
 /**
  *
  * @author spifu
@@ -18,6 +30,7 @@ public class loginPage extends javax.swing.JFrame {
      */
     public loginPage() {
         initComponents();
+        
     }
 
     /**
@@ -171,13 +184,6 @@ public class loginPage extends javax.swing.JFrame {
             hProfile.setResizable(false);
             dispose();
         }
-        else if(uname.equals("user11")&pass.equals("1234")) {
-            shopOwner sOwner = new shopOwner();
-            sOwner.setVisible(true);
-            sOwner.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-            sOwner.setResizable(false);
-            dispose();
-        }
         else if(pass.equals("")&uname.equals("")) {
             Component icon = null;
             JOptionPane.showMessageDialog(icon, "Fill the Username and the Password", "Error", JOptionPane.ERROR_MESSAGE);
@@ -192,8 +198,42 @@ public class loginPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(icon, "Fill the Username", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else {
-            Component icon = null;
-            JOptionPane.showMessageDialog(icon, "Username or Password is incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+            try {
+                FileReader fr = new FileReader("src\\Login.csv");
+                FileWriter fw=new FileWriter("src\\track.txt");   
+                BufferedReader br = new BufferedReader(fr);
+
+                //FileReader ffr=new FileReader("src\\database.txt");
+                //BufferedReader bfr=new BufferedReader(ffr);
+
+                String line;
+                Boolean matched = false;
+                while ((line = br.readLine()) != null) {
+                    String[] arr = line.split(",");
+                    if (uname.equals(arr[0]) && pass.equals(arr[1])) {
+                        matched=true;
+                        fw.write(arr[0]);
+                        fw.close();
+                        break;
+                    }
+                }
+                if (matched) {
+                    shopOwner oProfile = new shopOwner();
+                    oProfile.setVisible(true);
+                    oProfile.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                    oProfile.setResizable(false);
+                    dispose();
+                } 
+                else if (!matched) {
+                    JFrame f = new JFrame();
+                    JOptionPane.showMessageDialog(f, "User Name Or Password isn't correct", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_loginActionPerformed
 

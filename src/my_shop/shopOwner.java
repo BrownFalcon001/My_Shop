@@ -6,7 +6,19 @@
 package my_shop;
 
 import javax.swing.*;
-
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.*;
+import java.util.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import java.io.FileWriter; 
 /**
  *
  * @author Abrar Faiyaz Khan
@@ -18,6 +30,70 @@ public class shopOwner extends javax.swing.JFrame {
      */
     public shopOwner() {
         initComponents();
+//        String line;
+//        try {
+//            FileReader fr = new FileReader("src\\ownerInfo.csv");
+//            FileReader fr1 = new FileReader("src\\track.txt");
+//            BufferedReader br = new BufferedReader(fr);
+//            BufferedReader br1 = new BufferedReader(fr1);
+//            String key = br1.readLine();  
+//            String str="";
+//            while ((line = br.readLine()) != null) {
+//                str = line;
+//                String[] arr = line.split(",");
+//                if (arr[1].equals(key)) {
+//                    break;
+//                }
+//            }
+//            String[] arr = str.split(",");
+//          owner_usename.setText(arr[1]);
+//
+//        }
+//        catch (FileNotFoundException ex) {
+//            Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+          String line="";
+          try {
+              FileReader fr = new FileReader("src\\track.txt");
+              BufferedReader br = new BufferedReader(fr);
+              line = br.readLine();
+              owner_usename.setText(line);
+          }
+          catch (FileNotFoundException ex) {
+             Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (IOException ex) {
+             Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          try {
+                FileReader fr = new FileReader("src\\ownerInfo.txt");  
+                BufferedReader br = new BufferedReader(fr);
+
+                //FileReader ffr=new FileReader("src\\database.txt");
+                //BufferedReader bfr=new BufferedReader(ffr);
+
+                String line1;
+//                Boolean matched = false;
+                while ((line1 = br.readLine()) != null) {
+                    String[] arr = line1.split(",");
+                    if (arr[1].equals(line)) {
+//                        matched=true;
+                        break;
+                    }
+                }
+                String[] arr = line1.split(",");
+                owner_shopName.setText(arr[2]);
+                owner_rent.setText(arr[3]);
+                owner_dueRent.setText(arr[4]);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+          
+        
     }
 
     /**
@@ -280,7 +356,9 @@ public class shopOwner extends javax.swing.JFrame {
         notif.setResizable(false);
         dispose();
     }//GEN-LAST:event_notifActionPerformed
-
+    public void init() {
+        
+    } 
     /**
      * @param args the command line arguments
      */
@@ -339,7 +417,7 @@ public class shopOwner extends javax.swing.JFrame {
     private javax.swing.JLabel owner_dueRent;
     private javax.swing.JLabel owner_rent;
     private javax.swing.JLabel owner_shopName;
-    private javax.swing.JLabel owner_usename;
+    public javax.swing.JLabel owner_usename;
     private javax.swing.JPanel panel_owner;
     private javax.swing.JButton payRent;
     private javax.swing.JButton placeComplaint;
