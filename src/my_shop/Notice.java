@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.time.*;
+import java.time.format.*;
 //import javax.mail.Authenticator;
 //import javax.mail.Message;
 //import javax.mail.MessagingException;
@@ -226,7 +228,11 @@ public class Notice extends javax.swing.JFrame {
         //String value = comboName.getSelectedItem().toString();
         String notice = noticeSt.getText();
         try(FileWriter fw=new FileWriter("src\\database1.csv",true)){
-            fw.write(comName+","+notice+"\n");
+            DateTimeFormatter dtf=DateTimeFormatter.ofPattern("<dd/MM//yyyy @ hh:mm:ss a>");
+            LocalDateTime now=LocalDateTime.now();
+            //System.out.println(dtf.format(now));
+            String dtm=(String) dtf.format(now);
+            fw.write(comName+","+dtm+","+notice+"\n");
             noticeSt.setText("");
         }
         catch(IOException ex){
@@ -301,6 +307,7 @@ public class Notice extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;

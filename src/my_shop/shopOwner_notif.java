@@ -43,6 +43,62 @@ public class shopOwner_notif extends javax.swing.JFrame {
           } catch (IOException ex) {
              Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
           }
+        
+        FileReader fr=null;
+        try{
+            System.out.println("hello");
+            fr=new FileReader("src\\database1.csv");
+            BufferedReader br=new BufferedReader(fr);
+            //String line = "";
+            notifiE.setText("");
+            String[] Starr=new String[10];
+            String[] Starrt= new String[10];
+            String[] StP= new String[10];
+            String[] StPt= new String[10];
+            int cnt=0;
+            int cntP=0;
+            String uname= usename.getText();
+            String un= new String("");
+            try{
+                FileReader fr1=new FileReader("src\\ownerInfo.txt");
+                BufferedReader br1=new BufferedReader(fr1);
+                while((un=br1.readLine())!=null){
+                    String[] unarr=un.split(",");
+                    if(unarr[1].equals(uname)){
+                        uname=unarr[2];
+                        break;
+                    }
+                }
+            }catch(IOException ex){
+                System.out.println("IOException" + ex);
+            }
+            //System.out.println(uname);
+            while((line=br.readLine())!=null){
+                String[] arr=line.split(",");
+                if(arr[0].equals("all")){
+                    Starr[cnt]=arr[2];
+                    Starrt[cnt]=arr[1];
+                    cnt++;
+                    //System.out.println(cnt);
+                }
+                if(arr[0].equals(uname)){
+                    StP[cntP]=arr[2];
+                    StPt[cntP]=arr[1];
+                    cntP++;
+                }
+            }
+            for(int i=cnt-1;i>=0;i--){
+                notifiE.append(Starrt[i]+"\n");
+                notifiE.append("          "+Starr[i]+"\n");
+            }
+            for(int i=cntP-1;i>=0;i--){
+               notifiP.append(StPt[i]+"\n");
+               notifiP.append("          "+StP[i]+"\n");
+            }
+            
+        }catch(IOException ex){
+            System.out.println("IOException "+ ex);
+        }
     }
     
     /**
@@ -64,10 +120,10 @@ public class shopOwner_notif extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         LogOut = new javax.swing.JButton();
         Back = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        notifiE = new javax.swing.JTextField();
-        notifiP = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        notifiE = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        notifiP = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -111,55 +167,49 @@ public class shopOwner_notif extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        notifiE.setColumns(20);
+        notifiE.setRows(5);
+        jScrollPane1.setViewportView(notifiE);
 
-        notifiE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notifiEActionPerformed(evt);
-            }
-        });
+        notifiP.setColumns(20);
+        notifiP.setRows(5);
+        jScrollPane2.setViewportView(notifiP);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Back))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(188, 188, 188)
-                        .addComponent(label_notif)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usename)
-                            .addComponent(LogOut))))
+                .addComponent(jLabel2)
+                .addGap(188, 188, 188)
+                .addComponent(label_notif)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(usename)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Back)
+                        .addComponent(LogOut)))
                 .addGap(31, 31, 31))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(notifiE, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(249, 249, 249)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel7))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel9))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(62, 62, 62)
-                                    .addComponent(notifiP, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(57, 57, 57)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel9))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel7)))
+                                .addGap(519, 519, 519)))))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,21 +236,16 @@ public class shopOwner_notif extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(notifiE, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(notifiP)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Back)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 562));
@@ -230,27 +275,6 @@ public class shopOwner_notif extends javax.swing.JFrame {
         shopowner.setResizable(false);
         dispose();
     }//GEN-LAST:event_BackActionPerformed
-
-    private void notifiEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifiEActionPerformed
-        // TODO add your handling code here:
-        try{
-            FileReader fr=new FileReader("src\\database1.csv");
-            BufferedReader br= new BufferedReader(fr);
-            String line;
-            while((line=br.readLine())!=null){
-                String [] arr=line.split(",");
-                if(arr[0].equals("all")){
-                    notifiE.setText(arr[1]);
-                }
-            }
-            
-        }catch(FileNotFoundException ex){
-            
-        }
-        catch(IOException ex){
-            
-        }
-    }//GEN-LAST:event_notifiEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,11 +320,11 @@ public class shopOwner_notif extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel label_notif;
-    private javax.swing.JTextField notifiE;
-    private javax.swing.JTextField notifiP;
+    private javax.swing.JTextArea notifiE;
+    private javax.swing.JTextArea notifiP;
     private javax.swing.JLabel usename;
     // End of variables declaration//GEN-END:variables
 }
