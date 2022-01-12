@@ -1,0 +1,16 @@
+1,owner11,shop11,40000,10000,owner11
+0,owner12,shop12,40000,10000,owner12
+1,owner13,shop13,40000,10000,owner13
+0,tausif,shop14,120,0,modnapendulum
+1,owner21,shop21,40000,10000,owner21
+1,owner22,shop22,40000,10000,owner22
+1,abrar,shop23,100000,0,ongopremik
+1,owner24,shop24,40000,10000,owner24
+0,owner31,shop31,40000,10000,owner31
+1,owner32,shop32,40000,10000,owner32
+1,owner33,shop33,40000,10000,owner33
+1,owner34,shop34,40000,10000,owner34
+0,owner41,shop41,40000,10000,owner41
+0,owner42,shop42,40000,10000,owner42
+0,owner43,shop43,40000,10000,owner43
+0,owner44,shop44,40000,10000,owner44

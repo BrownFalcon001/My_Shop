@@ -68,6 +68,8 @@ public class admin_notif extends javax.swing.JFrame {
              Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
         }catch(IOException ex){
             Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(ArrayIndexOutOfBoundsException ex){
+            System.out.println("Array index out of bound "+ ex);
         }
     }
 
@@ -119,7 +121,9 @@ public class admin_notif extends javax.swing.JFrame {
             }
         });
 
+        adNotif.setEditable(false);
         adNotif.setColumns(20);
+        adNotif.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         adNotif.setRows(5);
         jScrollPane2.setViewportView(adNotif);
 
