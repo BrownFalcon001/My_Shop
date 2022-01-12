@@ -30,6 +30,8 @@ import javax.swing.WindowConstants;
 // User Imports
 import javax.swing.*;
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -75,8 +77,9 @@ public class Complain extends javax.swing.JFrame {
         send = new javax.swing.JButton();
         back = new javax.swing.JButton();
         logOut = new javax.swing.JButton();
-        ComplainText = new javax.swing.JTextField();
         notifi = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ComplainText = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -135,13 +138,6 @@ public class Complain extends javax.swing.JFrame {
             }
         });
 
-        ComplainText.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        ComplainText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ComplainTextActionPerformed(evt);
-            }
-        });
-
         notifi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         notifi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my_shop/notification.png"))); // NOI18N
         notifi.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +145,11 @@ public class Complain extends javax.swing.JFrame {
                 notifiActionPerformed(evt);
             }
         });
+
+        ComplainText.setColumns(20);
+        ComplainText.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        ComplainText.setRows(5);
+        jScrollPane1.setViewportView(ComplainText);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -170,7 +171,7 @@ public class Complain extends javax.swing.JFrame {
                             .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(287, 287, 287)
                             .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(ComplainText, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(158, 158, 158))
         );
         jPanel1Layout.setVerticalGroup(
@@ -190,9 +191,9 @@ public class Complain extends javax.swing.JFrame {
                             .addComponent(userName))))
                 .addGap(18, 18, 18)
                 .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(ComplainText, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(send, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -224,8 +225,11 @@ public class Complain extends javax.swing.JFrame {
         String complain = ComplainText.getText();
         
         try (FileWriter writer = new FileWriter("src\\Complain.csv",true)) {
-            
-            writer.write(name+","+complain+"\n");
+            DateTimeFormatter dtf=DateTimeFormatter.ofPattern("<dd/MM//yyyy @ hh:mm:ss a>");
+            LocalDateTime now=LocalDateTime.now();
+            //System.out.println(dtf.format(now));
+            String dtm=(String) dtf.format(now);
+            writer.write(name+","+dtm +","+complain+"\n");
             ComplainText.setText("");
         } 
         catch (FileNotFoundException ex) {
@@ -256,10 +260,6 @@ public class Complain extends javax.swing.JFrame {
         }
         //dispose();
     }//GEN-LAST:event_logOutActionPerformed
-
-    private void ComplainTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComplainTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComplainTextActionPerformed
 
     private void notifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifiActionPerformed
         // TODO add your handling code here:
@@ -312,12 +312,13 @@ public class Complain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ComplainText;
+    private javax.swing.JTextArea ComplainText;
     private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logOut;
     private javax.swing.JButton notifi;
     private javax.swing.JButton send;

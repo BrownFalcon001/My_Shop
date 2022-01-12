@@ -39,6 +39,36 @@ public class admin_notif extends javax.swing.JFrame {
      */
     public admin_notif() {
         initComponents();
+        String line="";
+        adNotif.setText("");
+        FileReader fr=null;
+        try{
+            fr=new FileReader("src\\Complain.csv");
+            BufferedReader br= new BufferedReader(fr);
+            String[] nname=new String[10];
+            String[] ntime = new String[10];
+            String[] nmsg = new String[10];
+            int cnt=0;
+            while((line=br.readLine())!=null){
+                String[] arr=line.split(",");
+                int a=arr.length;
+                if(a>=3){
+                    nname[cnt]=arr[0];
+                    ntime[cnt]=arr[1];
+                    nmsg[cnt]=arr[2];
+                    cnt++;
+                }
+            }
+            for(int i=cnt-1;i>=0;i--){
+                //adNotif.append(ntime[i]+"\n");
+                adNotif.append(ntime[i]+" from "+nname[i]+"\n");
+                adNotif.append("           "+nmsg[i]+"\n" );
+            }
+        }catch(FileNotFoundException ex){
+             Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(IOException ex){
+            Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -54,10 +84,10 @@ public class admin_notif extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         logOut = new javax.swing.JButton();
         back = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        adNotif = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -72,11 +102,6 @@ public class admin_notif extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Sylfaen", 1, 40)); // NOI18N
         jLabel6.setText("Notifications");
-
-        jTextPane1.setEditable(false);
-        jTextPane1.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jTextPane1.setText("<05/01/2022 @ 5:31 PM> From shop11\n\tLift noshto. Taratari thik koren......\n\n\n<05/01/2022 @ 6:31 PM> From shop11\n\tPanir line e problem. Moyla pani ashe. Line fix koren fast....");
-        jScrollPane1.setViewportView(jTextPane1);
 
         logOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         logOut.setText("Log out");
@@ -94,38 +119,43 @@ public class admin_notif extends javax.swing.JFrame {
             }
         });
 
+        adNotif.setColumns(20);
+        adNotif.setRows(5);
+        jScrollPane2.setViewportView(adNotif);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(188, 188, 188)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(logOut, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(31, 31, 31))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(logOut, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(31, 31, 31))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(back)
-                        .addGap(46, 46, 46))))
+                .addGap(0, 873, Short.MAX_VALUE)
+                .addComponent(back)
+                .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jLabel2)
-                        .addGap(26, 26, 26))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
@@ -133,10 +163,9 @@ public class admin_notif extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(logOut)))
-                        .addGap(60, 60, 60)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)))
                 .addComponent(back)
                 .addGap(50, 50, 50))
         );
@@ -206,13 +235,13 @@ public class admin_notif extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea adNotif;
     private javax.swing.JButton back;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton logOut;
     // End of variables declaration//GEN-END:variables
 }
