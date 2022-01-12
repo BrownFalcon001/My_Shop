@@ -1,0 +1,16 @@
+shop11,1st floor - east side
+shop12,1st floor - north side
+shop13,1st floor - west side
+shop14,1st floor - south side
+shop21,2st floor - east side
+shop22,2st floor - north side
+shop23,2st floor - west side
+shop24,2st floor - south side
+shop31,3st floor - east side
+shop32,3st floor - north side
+shop33,3st floor - west side
+shop34,3st floor - south side
+shop41,4st floor - east side
+shop42,4st floor - north side
+shop43,4st floor - west side
+shop44,4st floor - south side

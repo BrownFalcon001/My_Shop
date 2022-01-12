@@ -43,7 +43,20 @@ public class Complain extends javax.swing.JFrame {
      */
     public Complain() {
         initComponents();
+        String line="";
+          try {
+              FileReader fr = new FileReader("src\\track.txt");
+              BufferedReader br = new BufferedReader(fr);
+              line = br.readLine();
+              notifi.setText(line);
+          }
+          catch (FileNotFoundException ex) {
+             Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (IOException ex) {
+             Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+          }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,8 +75,8 @@ public class Complain extends javax.swing.JFrame {
         send = new javax.swing.JButton();
         back = new javax.swing.JButton();
         logOut = new javax.swing.JButton();
-        notifi = new javax.swing.JButton();
         ComplainText = new javax.swing.JTextField();
+        notifi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -122,17 +135,18 @@ public class Complain extends javax.swing.JFrame {
             }
         });
 
-        notifi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my_shop/notification.png"))); // NOI18N
-        notifi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notifiActionPerformed(evt);
-            }
-        });
-
         ComplainText.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         ComplainText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComplainTextActionPerformed(evt);
+            }
+        });
+
+        notifi.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        notifi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my_shop/notification.png"))); // NOI18N
+        notifi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notifiActionPerformed(evt);
             }
         });
 
@@ -146,8 +160,8 @@ public class Complain extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(204, 204, 204)
-                        .addComponent(notifi, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(230, 230, 230)
+                        .addComponent(notifi, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(userName))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -169,14 +183,12 @@ public class Complain extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(notifi, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(39, 39, 39)
-                            .addComponent(userName))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userName)
+                            .addComponent(notifi, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
                 .addComponent(ComplainText, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,8 +227,11 @@ public class Complain extends javax.swing.JFrame {
             
             writer.write(name+","+complain+"\n");
             ComplainText.setText("");
+        } 
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(Complain.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-//            Logger.getLogger(Complain.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Complain.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_sendActionPerformed
@@ -242,6 +257,10 @@ public class Complain extends javax.swing.JFrame {
         //dispose();
     }//GEN-LAST:event_logOutActionPerformed
 
+    private void ComplainTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComplainTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComplainTextActionPerformed
+
     private void notifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifiActionPerformed
         // TODO add your handling code here:
         shopOwner_notif nt = new shopOwner_notif();
@@ -249,10 +268,6 @@ public class Complain extends javax.swing.JFrame {
         nt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         dispose();
     }//GEN-LAST:event_notifiActionPerformed
-
-    private void ComplainTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComplainTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ComplainTextActionPerformed
 
     /**
      * @param args the command line arguments

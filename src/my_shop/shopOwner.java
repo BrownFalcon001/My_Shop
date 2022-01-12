@@ -86,10 +86,31 @@ public class shopOwner extends javax.swing.JFrame {
                 owner_shopName.setText(arr[2]);
                 owner_rent.setText(arr[3]);
                 owner_dueRent.setText(arr[4]);
+                fr.close();
+                try {
+                    FileReader fr1 = new FileReader("src\\shopLocation.txt");  
+                    BufferedReader br1 = new BufferedReader(fr1);
+                    String fnd = arr[2];
+                    String line2;
+                    while ((line2 = br1.readLine()) != null) {
+                        String[] arr1 = line2.split(",");
+                        if (arr1[0].equals(fnd)) {
+    //                        matched=true;
+                            break;
+                        }
+                    }
+                    String[] arr1 = line2.split(",");
+                    location.setText(arr1[1]);
+                }
+                catch (FileNotFoundException ex) {
+                    Logger.getLogger(shopOwner.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(shopOwner.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(shopOwner.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
-                Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(shopOwner.class.getName()).log(Level.SEVERE, null, ex);
             }
           
           
@@ -124,6 +145,8 @@ public class shopOwner extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         owner_shopName = new javax.swing.JLabel();
         notif = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        location = new javax.swing.JLabel();
 
         jButton9.setText("jButton9");
 
@@ -204,6 +227,12 @@ public class shopOwner extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        jLabel3.setText("Shop Location        :");
+
+        location.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        location.setText("1st floor, east");
+
         javax.swing.GroupLayout panel_ownerLayout = new javax.swing.GroupLayout(panel_owner);
         panel_owner.setLayout(panel_ownerLayout);
         panel_ownerLayout.setHorizontalGroup(
@@ -227,27 +256,33 @@ public class shopOwner extends javax.swing.JFrame {
                             .addComponent(ownerLogout))))
                 .addGap(22, 22, 22))
             .addGroup(panel_ownerLayout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panel_ownerLayout.createSequentialGroup()
-                        .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel6))
-                        .addGap(29, 29, 29)
-                        .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(owner_rent, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(owner_dueRent, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(panel_ownerLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(owner_shopName)))
+                .addGap(229, 229, 229)
                 .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_ownerLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(payRent, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel1))
+                        .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_ownerLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(owner_rent, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(owner_dueRent, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panel_ownerLayout.createSequentialGroup()
+                                        .addGap(61, 61, 61)
+                                        .addComponent(payRent, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel_ownerLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(placeComplaint, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(panel_ownerLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(location))))
                     .addGroup(panel_ownerLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(placeComplaint, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(owner_shopName)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_ownerLayout.setVerticalGroup(
@@ -268,17 +303,26 @@ public class shopOwner extends javax.swing.JFrame {
                     .addGroup(panel_ownerLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(notif, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
+                .addGap(15, 15, 15)
                 .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(owner_shopName))
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
+                .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(location))
+                .addGap(18, 18, 18)
                 .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(owner_rent))
                 .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_ownerLayout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(18, 18, 18)
+                        .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(owner_dueRent)
+                            .addComponent(payRent, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
                         .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel_ownerLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -289,12 +333,7 @@ public class shopOwner extends javax.swing.JFrame {
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(panel_ownerLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addGroup(panel_ownerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(owner_dueRent)
-                            .addComponent(payRent, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44)
+                        .addGap(110, 110, 110)
                         .addComponent(placeComplaint, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -409,9 +448,11 @@ public class shopOwner extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel label_head;
+    private javax.swing.JLabel location;
     private javax.swing.JButton notif;
     private javax.swing.JButton ownerLogout;
     private javax.swing.JLabel owner_dueRent;

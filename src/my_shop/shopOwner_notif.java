@@ -5,11 +5,20 @@
  */
 package my_shop;
 
+import javax.swing.*;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.*;
 import java.util.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import java.io.FileWriter;
 
 /**
  *
@@ -22,8 +31,20 @@ public class shopOwner_notif extends javax.swing.JFrame {
      */
     public shopOwner_notif() {
         initComponents();
+        String line="";
+        try {
+          FileReader fr = new FileReader("src\\track.txt");
+          BufferedReader br = new BufferedReader(fr);
+          line = br.readLine();
+          usename.setText(line);
+         }
+          catch (FileNotFoundException ex) {
+             Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (IOException ex) {
+             Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+          }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,7 +57,7 @@ public class shopOwner_notif extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        usename = new javax.swing.JLabel();
         label_notif = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -59,8 +80,8 @@ public class shopOwner_notif extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 20)); // NOI18N
         jLabel1.setText("For :");
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel4.setText("owner11");
+        usename.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        usename.setText("owner11");
 
         label_notif.setFont(new java.awt.Font("Sylfaen", 1, 40)); // NOI18N
         label_notif.setText("Notifications");
@@ -115,8 +136,8 @@ public class shopOwner_notif extends javax.swing.JFrame {
                         .addComponent(label_notif)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LogOut, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(usename)
+                            .addComponent(LogOut))))
                 .addGap(31, 31, 31))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -156,10 +177,10 @@ public class shopOwner_notif extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(label_notif)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(usename)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(LogOut)))
-                                .addGap(60, 60, 60)))
+                                .addGap(81, 81, 81)))
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
@@ -179,7 +200,7 @@ public class shopOwner_notif extends javax.swing.JFrame {
                         .addComponent(notifiP)))
                 .addGap(18, 18, 18)
                 .addComponent(Back)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 562));
@@ -271,7 +292,6 @@ public class shopOwner_notif extends javax.swing.JFrame {
     private javax.swing.JButton LogOut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -281,5 +301,6 @@ public class shopOwner_notif extends javax.swing.JFrame {
     private javax.swing.JLabel label_notif;
     private javax.swing.JTextField notifiE;
     private javax.swing.JTextField notifiP;
+    private javax.swing.JLabel usename;
     // End of variables declaration//GEN-END:variables
 }

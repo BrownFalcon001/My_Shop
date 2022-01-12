@@ -5,6 +5,13 @@
  */
 package my_shop;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author tausi
@@ -16,6 +23,38 @@ public class EditRent extends javax.swing.JFrame {
      */
     public EditRent() {
         initComponents();
+        String line="";
+        try {
+            FileReader fr = new FileReader("src\\track.txt");
+            BufferedReader br = new BufferedReader(fr);
+            line = br.readLine();
+        }
+        catch (FileNotFoundException ex) {
+           Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+           Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+           FileReader fr1 = new FileReader("src\\ownerInfo.txt");  
+           BufferedReader br1 = new BufferedReader(fr1); 
+           String line1;
+//                Boolean matched = false;
+                while ((line1 = br1.readLine()) != null) {
+                    String[] arr = line1.split(",");
+                    if (arr[1].equals(line)) {
+//                        matched=true;
+                        break;
+                    }
+                }
+                String[] arr = line1.split(",");
+                curRent.setText(arr[3]+ " tk");
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(shopOwner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(shopOwner.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -33,7 +72,7 @@ public class EditRent extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        curRent = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         cancel = new javax.swing.JButton();
@@ -77,12 +116,12 @@ public class EditRent extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         jLabel1.setText("Current Rent:");
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jTextField1.setText("Tk");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        curRent.setEditable(false);
+        curRent.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        curRent.setText("Tk");
+        curRent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                curRentActionPerformed(evt);
             }
         });
 
@@ -136,7 +175,7 @@ public class EditRent extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                            .addComponent(jTextField1))))
+                            .addComponent(curRent))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -145,7 +184,7 @@ public class EditRent extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(curRent, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -172,9 +211,9 @@ public class EditRent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void curRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curRentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_curRentActionPerformed
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
@@ -219,6 +258,7 @@ public class EditRent extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancel;
     private javax.swing.JButton confirm;
+    private javax.swing.JTextField curRent;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -226,7 +266,6 @@ public class EditRent extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
