@@ -15,11 +15,8 @@ import java.util.logging.Logger;
  */
 public class hello {
     public static void main(String[] arg) {
-        try{
-            Wini ini = new Wini(new File("src//hello.ini"));
-            ini.put("sleepy", "age", 55);
-        }catch (IOException ex) {
-            Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        System.out.println(getDTM());
+            DateTime t = new DateTime();
+            System.out.println(t.time);
     }
 }

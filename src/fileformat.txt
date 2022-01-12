@@ -1,0 +1,3 @@
+ownerInfo.txt
+allocstatus,ownername,shopnane,rent,due,password
+

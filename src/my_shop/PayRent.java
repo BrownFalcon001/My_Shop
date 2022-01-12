@@ -5,6 +5,11 @@
  */
 package my_shop;
 import javax.swing.*;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author Abrar Faiyaz Khan
@@ -14,6 +19,7 @@ public class PayRent extends javax.swing.JFrame {
     /**
      * Creates new form shopOwner_payRent
      */
+    
     public PayRent() {
         initComponents();
     }
@@ -34,7 +40,7 @@ public class PayRent extends javax.swing.JFrame {
         dueRent = new javax.swing.JLabel();
         confirm = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        amount = new javax.swing.JTextField();
+        Amount = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -75,17 +81,12 @@ public class PayRent extends javax.swing.JFrame {
             }
         });
 
-        amount.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
-                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,14 +98,16 @@ public class PayRent extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(confirm)
                                     .addComponent(jLabel3))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(amount))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(57, 57, 57)
-                                        .addComponent(cancel)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                                        .addComponent(cancel))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(Amount))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(185, 185, 185)
+                        .addComponent(jLabel1)))
                 .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,15 +119,18 @@ public class PayRent extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dueRent, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Amount, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirm)
                     .addComponent(cancel))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -141,6 +147,50 @@ public class PayRent extends javax.swing.JFrame {
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
 //         TODO add your handling code here:
         // reduce amount from database
+//        Check if input is an integer
+//        if(amount.getText())
+
+        int amount = (int)Amount.getValue();
+        int due;
+        String uname;
+        try {
+            FileReader fr = new FileReader("src//track.txt");
+            BufferedReader br = new BufferedReader(fr);
+            uname = (String)br.readLine();
+            
+            FileReader fr1 = new FileReader("src//ownerInfo.txt");
+            FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
+            BufferedReader br1 = new BufferedReader(fr1);
+            
+            Boolean matched = false;
+            String line;
+            while((line = br.readLine()) != null) {
+                String[] arr = line.split(",");
+                if(arr[0].equals("1")) {
+                    if(uname.equals(arr[1])) {
+                        matched = true;
+                        try{
+                            due = Integer.parseInt(arr[4]);
+                            due = due - amount;
+                            arr[4] = Integer.toString(due);
+                        }
+                        catch (NumberFormatException ex){
+                            ex.printStackTrace();
+                         }
+//                        due = due - amount;
+                        
+                    }  
+                }
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PayRent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PayRent.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
         shopOwner_success succ = new shopOwner_success();
         succ.setVisible(true);
         dispose();
@@ -185,7 +235,7 @@ public class PayRent extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField amount;
+    private javax.swing.JSpinner Amount;
     private javax.swing.JButton cancel;
     private javax.swing.JButton confirm;
     private javax.swing.JLabel dueRent;
