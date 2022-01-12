@@ -5,8 +5,28 @@
  */
 package my_shop;
 import java.awt.Component;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+//import javax.mail.Authenticator;
+//import javax.mail.Message;
+//import javax.mail.MessagingException;
+//import javax.mail.PasswordAuthentication;
+//import javax.mail.Session;
+//import javax.mail.Transport;
+//import javax.mail.internet.AddressException;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+
 /**
  *
  * @author spifu
@@ -18,6 +38,55 @@ public class adminProfile extends javax.swing.JFrame {
      */
     public adminProfile() {
         initComponents();
+        try {
+            FileReader fr = new FileReader("src\\ownerInfo.txt");  
+            BufferedReader br = new BufferedReader(fr);
+
+            //FileReader ffr=new FileReader("src\\database.txt");
+            //BufferedReader bfr=new BufferedReader(ffr);
+
+            String line1;
+            String ans= "";
+            String ans2 = "";
+            String ans3 = "";
+            String ans4 = "";
+            int cnt = 0, cnt1 = 0;
+//                Boolean matched = false;
+            while ((line1 = br.readLine()) != null) {
+                String[] arr = line1.split(",");
+                if (arr[0].equals("1")) {
+//                  
+                    cnt++;
+                    if(cnt<=8) {
+                        if(cnt==1) ans = ans + arr[2];
+                        else ans = ans + "," + arr[2];
+                    } 
+                    else {
+                        if(cnt==9) ans2 = ans2 + arr[2];
+                        else ans2 = ans2 + "," + arr[2];
+                    }
+                }
+                else {
+                    cnt1++;
+                    if(cnt1<=8) {
+                        if(cnt1==1) ans3 = ans3 + arr[2];
+                        else ans3 = ans3 + "," + arr[2];
+                    } 
+                    else {
+                        if(cnt1 == 9) ans4 = ans4 + arr[2]; 
+                        else ans4 = ans4 + "," + arr[2];
+                    }
+                }
+            }
+            rShop1.setText(ans);
+            rShop2.setText(ans2);
+            eShop1.setText(ans3);
+            eShop2.setText(ans4);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(shopOwner.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(shopOwner.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -36,16 +105,16 @@ public class adminProfile extends javax.swing.JFrame {
         shopList = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        rentedShopList = new javax.swing.JComboBox<>();
-        emptyShopList = new javax.swing.JComboBox<>();
         announce = new javax.swing.JButton();
         logOut = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        sLGo = new javax.swing.JButton();
-        rSLGo = new javax.swing.JButton();
-        eSLGo = new javax.swing.JButton();
+        GO = new javax.swing.JButton();
         notifi = new javax.swing.JButton();
+        rShop1 = new javax.swing.JLabel();
+        eShop1 = new javax.swing.JLabel();
+        rShop2 = new javax.swing.JLabel();
+        eShop2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(100, 100));
@@ -63,23 +132,17 @@ public class adminProfile extends javax.swing.JFrame {
 
         shopList.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         shopList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "shop11", "shop12", "shop13", "shop14", "shop21", "shop22", "shop23", "shop24", "shop31", "shop32", "shop33", "shop34", "shop41", "shop42", "shop43", "shop44" }));
+        shopList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shopListActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel6.setText("Rented Shop List :");
 
         jLabel3.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel3.setText("Empty Shop List :");
-
-        rentedShopList.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        rentedShopList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        rentedShopList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rentedShopListActionPerformed(evt);
-            }
-        });
-
-        emptyShopList.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        emptyShopList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8" }));
 
         announce.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         announce.setText("Announce");
@@ -115,30 +178,14 @@ public class adminProfile extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(202, 202, 202)
                 .addComponent(jLabel1)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        sLGo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        sLGo.setText("Go");
-        sLGo.addActionListener(new java.awt.event.ActionListener() {
+        GO.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        GO.setText("Go");
+        GO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sLGoActionPerformed(evt);
-            }
-        });
-
-        rSLGo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        rSLGo.setText("Go");
-        rSLGo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rSLGoActionPerformed(evt);
-            }
-        });
-
-        eSLGo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        eSLGo.setText("Go");
-        eSLGo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eSLGoActionPerformed(evt);
+                GOActionPerformed(evt);
             }
         });
 
@@ -149,6 +196,18 @@ public class adminProfile extends javax.swing.JFrame {
             }
         });
 
+        rShop1.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        rShop1.setText("owner11,owner12,owner13,owner14,owner21");
+
+        eShop1.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        eShop1.setText("owner11,owner12,owner13,owner14,owner21,o");
+
+        rShop2.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        rShop2.setText("owner11,owner12,owner13,owner14,owner21,own");
+
+        eShop2.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        eShop2.setText("owner11,owner12,owner13,owner14,owner21,");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -157,43 +216,49 @@ public class adminProfile extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jLabel2))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(27, 27, 27)
-                                .addComponent(announce)))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(notifi, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(usernameShow))
-                            .addComponent(logOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(65, 65, 65))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rentedShopList, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(rSLGo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(notifi, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(usernameShow))
+                                    .addComponent(logOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(65, 65, 65))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
                                 .addComponent(shopList, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(sLGo))
+                                .addComponent(GO)
+                                .addContainerGap(72, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(announce)
+                        .addGap(23, 23, 23))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(emptyShopList, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(eSLGo)))
-                        .addContainerGap(72, Short.MAX_VALUE))))
+                                .addGap(61, 61, 61)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rShop2)
+                                    .addComponent(rShop1)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(eShop2)
+                                    .addComponent(eShop1))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,22 +277,22 @@ public class adminProfile extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(shopList, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sLGo))))
+                            .addComponent(GO))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rShop1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rentedShopList, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rSLGo)))
+                .addComponent(rShop2)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eShop1)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(emptyShopList, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(eSLGo)))
-                .addGap(77, 77, 77)
+                .addComponent(eShop2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(announce, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -236,10 +301,6 @@ public class adminProfile extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void rentedShopListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentedShopListActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rentedShopListActionPerformed
 
     private void announceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_announceActionPerformed
         // TODO add your handling code here:
@@ -272,9 +333,52 @@ public class adminProfile extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_logOutActionPerformed
 
-    private void sLGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sLGoActionPerformed
+    private void GOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GOActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sLGoActionPerformed
+        String comName = (String)shopList.getSelectedItem();
+        //String value = comboName.getSelectedItem().toString();
+        try {
+            FileWriter fw=new FileWriter("src\\track.txt");
+            fw.write(comName);
+            fw.close();
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(adminProfile.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(adminProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try{
+            FileReader fr = new FileReader("src\\ownerInfo.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while ((line = br.readLine()) != null) {
+//                    System.out.println(line);
+                String[] arr = line.split(",");
+                if(arr[2].equals(comName)) {
+                    if(arr[0].equals("1")) {
+                        shopInfo shopinfo = new shopInfo();
+                        shopinfo.setVisible(true);
+                        dispose();
+                        break;
+                    }
+                    else {
+                        shopInfoEmptyShop sips = new shopInfoEmptyShop();
+                        sips.setVisible(true);
+                        dispose();
+                        break;
+                    }
+                }
+            }
+            
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(adminProfile.class.getName()).log(Level.SEVERE, null, ex);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(adminProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_GOActionPerformed
 
     private void notifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifiActionPerformed
         // TODO add your handling code here:
@@ -285,24 +389,9 @@ public class adminProfile extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_notifiActionPerformed
 
-    private void rSLGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSLGoActionPerformed
+    private void shopListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopListActionPerformed
         // TODO add your handling code here:
-        shopInfo shopinfo = new shopInfo();
-        shopinfo.setVisible(true);
-        shopinfo.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        shopinfo.setResizable(false);
-        dispose();
-    }//GEN-LAST:event_rSLGoActionPerformed
-
-    private void eSLGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eSLGoActionPerformed
-        // TODO add your handling code here:
-        shopInfoEmptyShop emptyshop = new shopInfoEmptyShop();
-        emptyshop.setVisible(true);
-        emptyshop.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        emptyshop.setResizable(false);
-        dispose();
-        
-    }//GEN-LAST:event_eSLGoActionPerformed
+    }//GEN-LAST:event_shopListActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,9 +429,10 @@ public class adminProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton GO;
     private javax.swing.JButton announce;
-    private javax.swing.JButton eSLGo;
-    private javax.swing.JComboBox<String> emptyShopList;
+    private javax.swing.JLabel eShop1;
+    private javax.swing.JLabel eShop2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -352,9 +442,8 @@ public class adminProfile extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logOut;
     private javax.swing.JButton notifi;
-    private javax.swing.JButton rSLGo;
-    private javax.swing.JComboBox<String> rentedShopList;
-    private javax.swing.JButton sLGo;
+    private javax.swing.JLabel rShop1;
+    private javax.swing.JLabel rShop2;
     private javax.swing.JComboBox<String> shopList;
     private javax.swing.JLabel usernameShow;
     // End of variables declaration//GEN-END:variables

@@ -38,6 +38,64 @@ public class shopInfo extends javax.swing.JFrame {
      */
     public shopInfo() {
         initComponents();
+        String line = "";
+        try {
+            FileReader fr = new FileReader("src\\track.txt");
+            BufferedReader br = new BufferedReader(fr);
+            line = br.readLine();
+            shopname.setText(line);
+        }
+        catch (FileNotFoundException ex) {
+           Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+           Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            FileReader fr = new FileReader("src\\ownerInfo.txt");  
+            BufferedReader br = new BufferedReader(fr);
+
+            //FileReader ffr=new FileReader("src\\database.txt");
+            //BufferedReader bfr=new BufferedReader(ffr);
+
+            String line1;
+//                Boolean matched = false;
+            while ((line1 = br.readLine()) != null) {
+                String[] arr = line1.split(",");
+                if (arr[2].equals(line)) {
+//                        matched=true;
+                    break;
+                }
+            }
+            String[] arr = line1.split(",");
+            curowner.setText(arr[1]);
+            rent.setText(arr[3]);
+            due.setText(arr[4]);
+            fr.close();
+            try {
+                FileReader fr1 = new FileReader("src\\shopLocation.txt");  
+                BufferedReader br1 = new BufferedReader(fr1);
+                String fnd = arr[2];
+                String line2;
+                while ((line2 = br1.readLine()) != null) {
+                    String[] arr1 = line2.split(",");
+                    if (arr1[0].equals(fnd)) {
+//                        matched=true;
+                        break;
+                    }
+                }
+                String[] arr1 = line2.split(",");
+                loc.setText(arr1[1]);
+            }
+            catch (FileNotFoundException ex) {
+                Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -52,17 +110,17 @@ public class shopInfo extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        shopname = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        curowner = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        rent = new javax.swing.JLabel();
         edit = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        due = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        loc = new javax.swing.JLabel();
         removeCurrentOwner = new javax.swing.JButton();
         back = new javax.swing.JButton();
         notifi = new javax.swing.JButton();
@@ -77,20 +135,20 @@ public class shopInfo extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my_shop/logo.png"))); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Sylfaen", 1, 36)); // NOI18N
-        jLabel4.setText("Shop11");
+        shopname.setFont(new java.awt.Font("Sylfaen", 1, 36)); // NOI18N
+        shopname.setText("Shop11");
 
         jLabel5.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel5.setText("Current Owner :");
 
-        jLabel6.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel6.setText("Owner11");
+        curowner.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        curowner.setText("Owner11");
 
         jLabel7.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel7.setText("Rent                 :");
 
-        jLabel8.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel8.setText("10000");
+        rent.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        rent.setText("10000");
 
         edit.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         edit.setText("Edit");
@@ -103,8 +161,8 @@ public class shopInfo extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel9.setText("Dues                 :");
 
-        jLabel10.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel10.setText("12000");
+        due.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        due.setText("12000");
 
         logOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         logOut.setText("Log out");
@@ -117,8 +175,8 @@ public class shopInfo extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel11.setText("Shop Location   :");
 
-        jLabel12.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel12.setText("1st floor, east side");
+        loc.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        loc.setText("1st floor, east side");
 
         removeCurrentOwner.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         removeCurrentOwner.setText("Remove Current Owner");
@@ -150,7 +208,7 @@ public class shopInfo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
-                .addComponent(jLabel4)
+                .addComponent(shopname)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(333, 333, 333)
@@ -160,9 +218,7 @@ public class shopInfo extends javax.swing.JFrame {
                         .addComponent(notifi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1))
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addComponent(logOut)))))
@@ -179,11 +235,11 @@ public class shopInfo extends javax.swing.JFrame {
                         .addComponent(jLabel9)))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel12)
+                    .addComponent(due)
+                    .addComponent(curowner)
+                    .addComponent(loc)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel8)
+                        .addComponent(rent)
                         .addGap(89, 89, 89)
                         .addComponent(edit))
                     .addComponent(removeCurrentOwner))
@@ -206,24 +262,24 @@ public class shopInfo extends javax.swing.JFrame {
                             .addComponent(logOut))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(46, 46, 46)
-                            .addComponent(jLabel4))))
+                            .addComponent(shopname))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(curowner))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel12))
+                    .addComponent(loc))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(edit)
-                    .addComponent(jLabel8))
+                    .addComponent(rent))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel10))
+                    .addComponent(due))
                 .addGap(28, 28, 28)
                 .addComponent(removeCurrentOwner, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -280,7 +336,7 @@ public class shopInfo extends javax.swing.JFrame {
 
     private void notifiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifiActionPerformed
         // TODO add your handling code here:
-        shopOwner_notif nt = new shopOwner_notif();
+        admin_notif nt = new admin_notif();
         nt.setVisible(true);
         nt.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         dispose();
@@ -323,21 +379,21 @@ public class shopInfo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
+    private javax.swing.JLabel curowner;
+    private javax.swing.JLabel due;
     private javax.swing.JButton edit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel loc;
     private javax.swing.JButton logOut;
     private javax.swing.JButton notifi;
     private javax.swing.JButton removeCurrentOwner;
+    private javax.swing.JLabel rent;
+    private javax.swing.JLabel shopname;
     // End of variables declaration//GEN-END:variables
 }

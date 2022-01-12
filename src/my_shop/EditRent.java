@@ -41,7 +41,7 @@ public class EditRent extends javax.swing.JFrame {
 //                Boolean matched = false;
                 while ((line1 = br1.readLine()) != null) {
                     String[] arr = line1.split(",");
-                    if (arr[1].equals(line)) {
+                    if (arr[2].equals(line)) {
 //                        matched=true;
                         break;
                     }

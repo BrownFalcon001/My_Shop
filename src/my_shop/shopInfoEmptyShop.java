@@ -10,6 +10,7 @@ import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
      */
     public shopInfoEmptyShop() {
         initComponents();
+        
     }
 
     /**
@@ -53,18 +55,20 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        shopname = new javax.swing.JLabel();
         logOut = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        loc = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        rent = new javax.swing.JTextField();
         back = new javax.swing.JButton();
-        addOwner = new javax.swing.JButton();
+        addowner = new javax.swing.JButton();
         nitifi = new javax.swing.JButton();
+        pass = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -78,8 +82,8 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("3nthusiasticFalcons");
 
-        jLabel2.setFont(new java.awt.Font("Sylfaen", 1, 40)); // NOI18N
-        jLabel2.setText("Shop11");
+        shopname.setFont(new java.awt.Font("Sylfaen", 1, 40)); // NOI18N
+        shopname.setText("Shop11");
 
         logOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         logOut.setText("Logout");
@@ -92,29 +96,29 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
         jLabel3.setText("Shop Location :");
 
-        jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jLabel4.setText("1st floor, east side");
+        loc.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        loc.setText("1st floor, east side");
 
         jLabel7.setFont(new java.awt.Font("Sylfaen", 1, 28)); // NOI18N
         jLabel7.setText("Add New Owner:");
 
         jLabel8.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jLabel8.setText("Name              :");
+        jLabel8.setText("Username        :");
 
-        jTextField1.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        name.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                nameActionPerformed(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
-        jLabel9.setText("Rent                : ");
+        jLabel9.setText("Password        : ");
 
-        jTextField2.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        rent.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        rent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                rentActionPerformed(evt);
             }
         });
 
@@ -126,8 +130,13 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
             }
         });
 
-        addOwner.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        addOwner.setText("Add Owner");
+        addowner.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addowner.setText("Add Owner");
+        addowner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addownerActionPerformed(evt);
+            }
+        });
 
         nitifi.setBackground(new java.awt.Color(50, 190, 210));
         nitifi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my_shop/notification.png"))); // NOI18N
@@ -136,6 +145,16 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
                 nitifiActionPerformed(evt);
             }
         });
+
+        pass.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        jLabel10.setText("Rent                : ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -146,7 +165,7 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                        .addComponent(shopname)
                         .addGap(162, 162, 162))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(180, 180, 180)
@@ -156,25 +175,27 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel8))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabel9)))
-                        .addGap(39, 39, 39)
+                                .addGap(65, 65, 65)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10))))
+                        .addGap(43, 43, 43)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rent, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loc)
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(logOut))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(addOwner))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(nitifi, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(84, 84, 84)
+                            .addComponent(logOut))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(nitifi, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel6)))
+                    .addComponent(addowner))
                 .addGap(70, 70, 70))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -193,23 +214,27 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(logOut))
                     .addComponent(jLabel5)
-                    .addComponent(jLabel2))
+                    .addComponent(shopname))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                    .addComponent(loc))
                 .addGap(33, 33, 33)
                 .addComponent(jLabel7)
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addOwner, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                    .addComponent(pass)
+                    .addComponent(jLabel9))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(rent, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addowner, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(back)
                 .addGap(38, 38, 38))
         );
@@ -233,13 +258,13 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
         //dispose();
     }//GEN-LAST:event_logOutActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nameActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void rentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_rentActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
@@ -256,6 +281,15 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
         an.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         dispose();
     }//GEN-LAST:event_nitifiActionPerformed
+
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passActionPerformed
+
+    private void addownerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addownerActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_addownerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,20 +327,38 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addOwner;
+    private javax.swing.JButton addowner;
     private javax.swing.JButton back;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel loc;
     private javax.swing.JButton logOut;
+    private javax.swing.JTextField name;
     private javax.swing.JButton nitifi;
+    private javax.swing.JTextField pass;
+    private javax.swing.JTextField rent;
+    private javax.swing.JLabel shopname;
     // End of variables declaration//GEN-END:variables
 }
+//YYY1,owner11,shop11,40000,10000,owner11
+//1,owner12,shop12,40000,10000,owner12
+//1,owner13,shop13,40000,10000,owner13
+//0,owner14,shop14,40000,10000,owner14
+//1,owner21,shop21,40000,10000,owner21
+//1,owner22,shop22,40000,10000,owner22
+//0,owner23,shop23,40000,10000,owner23
+//1,owner24,shop24,40000,10000,owner24
+//0,owner31,shop31,40000,10000,owner31
+//1,owner32,shop32,40000,10000,owner32
+//1,owner33,shop33,40000,10000,owner33
+//1,owner34,shop34,40000,10000,owner34
+//0,owner41,shop41,40000,10000,owner41
+//0,owner42,shop42,40000,10000,owner42
+//0,owner43,shop43,40000,10000,owner43
+//0,owner44,shop44,40000,10000,owner44

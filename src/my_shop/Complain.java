@@ -185,9 +185,9 @@ public class Complain extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(userName)
-                            .addComponent(notifi, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(notifi, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userName))))
                 .addGap(18, 18, 18)
                 .addComponent(logOut, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14)
@@ -223,7 +223,7 @@ public class Complain extends javax.swing.JFrame {
         String name = userName.getText();
         String complain = ComplainText.getText();
         
-        try (FileWriter writer = new FileWriter("src//Complain.csv",true)) {
+        try (FileWriter writer = new FileWriter("src\\Complain.csv",true)) {
             
             writer.write(name+","+complain+"\n");
             ComplainText.setText("");

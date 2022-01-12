@@ -24,7 +24,6 @@ import java.io.FileWriter;
  * @author spifu
  */
 public class loginPage extends javax.swing.JFrame {
-
     /**
      * Creates new form loginPage
      */
@@ -32,7 +31,6 @@ public class loginPage extends javax.swing.JFrame {
         initComponents();
         
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -204,22 +202,27 @@ public class loginPage extends javax.swing.JFrame {
         }
         else {
             try {
-                FileReader fr = new FileReader("src\\Login.csv");
+                FileReader fr = new FileReader("src\\ownerInfo.txt");
                 FileWriter fw=new FileWriter("src\\track.txt");   
                 BufferedReader br = new BufferedReader(fr);
-
+//                System.out.println(br.readLine());
                 //FileReader ffr=new FileReader("src\\database.txt");
                 //BufferedReader bfr=new BufferedReader(ffr);
 
                 String line;
                 Boolean matched = false;
                 while ((line = br.readLine()) != null) {
+//                    System.out.println(line);
                     String[] arr = line.split(",");
-                    if (uname.equals(arr[0]) && pass.equals(arr[1])) {
-                        matched=true;
-                        fw.write(arr[0]);
-                        fw.close();
-                        break;
+                    if(arr[0].equals("1")) {
+//                        System.out.println(arr[0]);
+                        if (uname.equals(arr[1]) && pass.equals(arr[5])) {
+                            matched=true;
+                            fw.write(arr[1]);
+                            fw.close();
+                            break;
+//                              System.out.println(uname);
+                        }
                     }
                 }
                 if (matched) {
