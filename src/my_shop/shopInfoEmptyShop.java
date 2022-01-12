@@ -40,7 +40,39 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
      */
     public shopInfoEmptyShop() {
         initComponents();
-        
+        String line = "";
+        try {
+            FileReader fr = new FileReader("src\\track.txt");
+            BufferedReader br = new BufferedReader(fr);
+            line = br.readLine();
+            shopname.setText(line);
+        }
+        catch (FileNotFoundException ex) {
+           Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+           Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try{
+            FileReader fr = new FileReader("src\\shopLocation.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String line2 = "";
+            
+            while ((line2 = br.readLine()) != null) {
+                String[] arr1 = line2.split(",");
+                if (arr1[0].equals(line)) {
+    //                       matched=true;
+                    line2 = arr1[1];
+                    break;
+                }
+            }
+            loc.setText(line2);
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
     }
 
     /**
@@ -288,7 +320,64 @@ public class shopInfoEmptyShop extends javax.swing.JFrame {
 
     private void addownerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addownerActionPerformed
         // TODO add your handling code here:
-        
+        String uname = name.getText();
+        String upass = pass.getText();
+        String urent = rent.getText();
+        try{
+            FileReader fr = new FileReader("src\\ownerInfo.txt");  
+            BufferedReader br = new BufferedReader(fr);
+            String[] str = new String[16];
+            String line;
+            int i=0;
+            while ((line = br.readLine()) != null) {
+                str[i] = line;
+                i++;
+            }
+//            for(int k=0;k<16;k++) {
+//                System.out.println(str[k]);
+//            }
+            fr.close();
+            FileReader fr1 = new FileReader("src\\track.txt");  
+            BufferedReader br1 = new BufferedReader(fr1);
+            String shop = br1.readLine();
+            fr1.close();
+            int j = 0;
+            for(int k=0;k<16;k++) {
+                String[] arr = str[k].split(",");
+                if(arr[2].equals(shop)) {
+                    j = k;
+                    break;
+                }
+            }
+            String[] arr1 = str[j].split(",");
+            arr1[0] = "1";
+            arr1[1] = uname;
+            arr1[3] = urent;
+            arr1[4] = "0";
+            arr1[5] = upass;
+            String copy = str[j];
+            str[j] = arr1[0];
+            
+            for(int k=1;k<6;k++) {
+                str[j] = str[j] + "," +  arr1[k];
+            }
+//            System.out.println(str[j]);  
+            FileWriter fw = new FileWriter("src\\ownerInfo.txt", false);
+            for(int k=0;k<15;k++) {
+                fw.write(str[k] + "\n");
+            }
+            fw.write(str[15]);
+            
+            fw.close();
+            shopInfo si = new shopInfo();
+            si.setVisible(true);
+            dispose();
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (IOException ex) {
+            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addownerActionPerformed
 
     /**

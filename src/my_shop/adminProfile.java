@@ -369,8 +369,7 @@ public class adminProfile extends javax.swing.JFrame {
                         break;
                     }
                 }
-            }
-            
+            }    
         }
         catch (FileNotFoundException ex) {
             Logger.getLogger(adminProfile.class.getName()).log(Level.SEVERE, null, ex);

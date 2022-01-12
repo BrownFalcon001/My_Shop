@@ -48,7 +48,7 @@ public class Complain extends javax.swing.JFrame {
               FileReader fr = new FileReader("src\\track.txt");
               BufferedReader br = new BufferedReader(fr);
               line = br.readLine();
-              notifi.setText(line);
+              userName.setText(line);
           }
           catch (FileNotFoundException ex) {
              Logger.getLogger(loginPage.class.getName()).log(Level.SEVERE, null, ex);
