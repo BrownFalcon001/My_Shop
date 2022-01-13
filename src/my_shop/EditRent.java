@@ -8,6 +8,7 @@ package my_shop;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,7 +75,7 @@ public class EditRent extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         curRent = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        newrent = new javax.swing.JTextField();
         cancel = new javax.swing.JButton();
         confirm = new javax.swing.JButton();
 
@@ -128,11 +129,10 @@ public class EditRent extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
         jLabel2.setText("New Rent: ");
 
-        jTextField2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jTextField2.setText("Tk");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        newrent.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        newrent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                newrentActionPerformed(evt);
             }
         });
 
@@ -174,7 +174,7 @@ public class EditRent extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                            .addComponent(newrent, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                             .addComponent(curRent))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
@@ -188,7 +188,7 @@ public class EditRent extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newrent, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel)
@@ -205,11 +205,12 @@ public class EditRent extends javax.swing.JFrame {
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
         // TODO add your handling code here:
         dispose();
+        
     }//GEN-LAST:event_cancelActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void newrentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newrentActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_newrentActionPerformed
 
     private void curRentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_curRentActionPerformed
         // TODO add your handling code here:
@@ -217,6 +218,57 @@ public class EditRent extends javax.swing.JFrame {
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
+        String rent = newrent.getText();
+        System.out.println(rent);
+        String uname;
+        try {
+            FileReader fr = new FileReader("src//track.txt");
+            BufferedReader br = new BufferedReader(fr);
+            uname = (String)br.readLine();
+            fr.close();
+//            System.out.println(uname);
+            
+            FileReader fr1 = new FileReader("src//ownerInfo.txt");
+//            FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
+            BufferedReader br1 = new BufferedReader(fr1);
+            String[] str = new String[16];
+            String line;
+            int i =0;
+            
+            while((line=br1.readLine())!=null) {
+                str[i] = line;
+                i++;
+            }
+            fr.close();
+            int j = -1;
+            for(int k=0;k<16;k++) {
+                String[] arr = str[k].split(",");
+                if(arr[2].equals(uname)) {
+                    j = k;
+                    break;
+                }
+            }
+            String[] arr1 = str[j].split(",");
+            arr1[3] = rent;
+            str[j] = arr1[0];
+            for(int k=1;k<6;k++) {
+                str[j] = str[j] +  "," + arr1[k];
+             }
+            System.out.println(str[j]);
+          fr1.close();
+          FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
+          for(int k=0;k<15;k++) {
+            fw1.write(str[k] + "\n");
+        }
+        fw1.write(str[15]);
+
+        fw1.close();
+//          fw1.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PayRent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PayRent.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
     }//GEN-LAST:event_confirmActionPerformed
 
@@ -266,6 +318,6 @@ public class EditRent extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField newrent;
     // End of variables declaration//GEN-END:variables
 }

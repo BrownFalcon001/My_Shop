@@ -22,8 +22,30 @@ public class PayRent extends javax.swing.JFrame {
     
     public PayRent() {
         initComponents();
+        try{
+         FileReader fr = new FileReader("src//track.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String uname1 = (String)br.readLine();
+            fr.close();
+            FileReader fr1 = new FileReader("src//ownerInfo.txt");
+//            FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
+            BufferedReader br1 = new BufferedReader(fr1);
+            String line;
+            while((line=br1.readLine())!=null) {
+                String[] arr = line.split(",");
+                if(uname1.equals(arr[1])) {
+                    break;
+                }
+            }
+            String[] arr = line.split(",");
+            dueRent.setText(arr[4] + " tk");
+    
+        }catch (FileNotFoundException ex) {
+            Logger.getLogger(PayRent.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PayRent.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,32 +179,88 @@ public class PayRent extends javax.swing.JFrame {
             FileReader fr = new FileReader("src//track.txt");
             BufferedReader br = new BufferedReader(fr);
             uname = (String)br.readLine();
+            fr.close();
+//            System.out.println(uname);
             
             FileReader fr1 = new FileReader("src//ownerInfo.txt");
-            FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
+//            FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
             BufferedReader br1 = new BufferedReader(fr1);
-            
-            Boolean matched = false;
+            String[] str = new String[16];
             String line;
-            while((line = br.readLine()) != null) {
-                String[] arr = line.split(",");
-                if(arr[0].equals("1")) {
-                    if(uname.equals(arr[1])) {
-                        matched = true;
-                        try{
-                            due = Integer.parseInt(arr[4]);
-                            due = due - amount;
-                            arr[4] = Integer.toString(due);
-                        }
-                        catch (NumberFormatException ex){
-                            ex.printStackTrace();
-                         }
-//                        due = due - amount;
-                        
-                    }  
+            int i =0;
+            
+            while((line=br1.readLine())!=null) {
+                str[i] = line;
+                i++;
+            }
+            fr.close();
+            int j = -1;
+            for(int k=0;k<16;k++) {
+                String[] arr = str[k].split(",");
+                if(arr[1].equals(uname)) {
+                    j = k;
+                    break;
                 }
             }
+            String[] arr1 = str[j].split(",");
+            try{
+                due = Integer.parseInt(arr1[4]);
+                due = due - amount;
+                arr1[4] = Integer.toString(due);
+            }
+            catch (NumberFormatException ex){
+                ex.printStackTrace();
+            }
+            str[j] = arr1[0];
+            for(int k=1;k<6;k++) {
+                str[j] = str[j] +  "," + arr1[k];
+             }
+            System.out.println(str[j]);
             
+//                        due = due - amount;
+//            System.out.println(j + " " + uname);
+//            String[] str = new String[16];
+//            String line;
+//            int i=0;
+//            while ((line = br.readLine()) != null) {
+//                str[i] = line;
+//                i++;
+//            }
+            
+//            Boolean matched = false;
+//            String line;
+//            while((line = br.readLine()) != null) {
+//                String[] arr = line.split(",");
+//                if(arr[0].equals("1")) {
+//                    if(uname.equals(arr[1])) {
+//                        matched = true;
+//                        try{
+//                            due = Integer.parseInt(arr[4]);
+//                            due = due - amount;
+//                            arr[4] = Integer.toString(due);
+//                            
+//                        }
+//                        catch (NumberFormatException ex){
+//                            ex.printStackTrace();
+//                         }
+////                        due = due - amount;
+//                        
+//                    }  
+//                }
+//            }
+//          
+//          for(int k=0;k<16;k++) {
+//              System.out.println(str[k]);
+//          }
+          fr1.close();
+          FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
+          for(int k=0;k<15;k++) {
+            fw1.write(str[k] + "\n");
+        }
+        fw1.write(str[15]);
+
+        fw1.close();
+//          fw1.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PayRent.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -245,3 +323,147 @@ public class PayRent extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
+//        DateTime t = new DateTime();
+//        String ti = t.time;
+//        String[] ans = ti.split(",");
+//        
+//        int[] month = new int[16];
+//        int[] year = new int[16];
+//        int[] cal = new int[16];
+//        try {
+//            FileReader fr = new FileReader("src\\dateTime.txt");
+//            BufferedReader br = new BufferedReader(fr);
+//            String[] str = new String[16];
+//            String line;
+//            int i=0;
+//            while ((line = br.readLine()) != null) {
+//                str[i] = line;
+//                i++;
+//            }
+//            fr.close();
+//            for(int k=0;k<16;k++) {
+//                String[] arr = str[k].split(",");
+//                int a, b, c,d;
+//                try{
+//                    if(arr.length==4) {
+//                        a = Integer.parseInt(arr[2]);
+//                        b = Integer.parseInt(ans[1]);
+//                        c = Integer.parseInt(arr[3]);
+//                        d = Integer.parseInt(ans[2]);
+//                        month[k] = b-a;
+//                        year[k] = d-c;
+//                    }
+//                }
+//                catch (NumberFormatException ex){
+//                    ex.printStackTrace();
+//                }
+//                
+//                
+//                
+//            }
+//            for(int k=0;k<16;k++) {
+//                cal[k] = month[k] + 12 * year[k];
+//            }
+//            try {
+////                FileReader fr = new FileReader("src//track.txt");
+////                BufferedReader br = new BufferedReader(fr);
+////                uname = (String)br.readLine();
+////                fr.close();
+//    //            System.out.println(uname);
+//
+//                FileReader fr1 = new FileReader("src//ownerInfo.txt");
+//    //            FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
+//                BufferedReader br1 = new BufferedReader(fr1);
+//                String[] str1 = new String[16];
+//                String line3;
+//                int ii =0;
+//
+//                while((line3=br1.readLine())!=null) {
+//                    str1[ii] = line3;
+//                    ii++;
+//                }
+//                fr1.close();
+//                for(int k=0;k<16;k++) {
+//                    System.out.println(str1[k]);
+//                }
+////                int j = -1;
+////                for(int k=0;k<16;k++) {
+////                    String[] arr = str[k].split(",");
+////                    if(arr[1].equals(uname)) {
+////                        j = k;
+////                        break;
+////                    }
+////                }
+////                String[] arr1 = str[j].split(",");
+////                try{
+////                    due = Integer.parseInt(arr1[4]);
+////                    due = due - amount;
+////                    arr1[4] = Integer.toString(due);
+////                }
+////                catch (NumberFormatException ex){
+////                    ex.printStackTrace();
+////                }
+////                str[j] = arr1[0];
+////                for(int k=1;k<6;k++) {
+////                    str[j] = str[j] +  "," + arr1[k];
+////                 }
+////                System.out.println(str[j]);
+////
+////    //                        due = due - amount;
+////    //            System.out.println(j + " " + uname);
+////    //            String[] str = new String[16];
+////    //            String line;
+////    //            int i=0;
+////    //            while ((line = br.readLine()) != null) {
+////    //                str[i] = line;
+////    //                i++;
+////    //            }
+////
+////    //            Boolean matched = false;
+////    //            String line;
+////    //            while((line = br.readLine()) != null) {
+////    //                String[] arr = line.split(",");
+////    //                if(arr[0].equals("1")) {
+////    //                    if(uname.equals(arr[1])) {
+////    //                        matched = true;
+////    //                        try{
+////    //                            due = Integer.parseInt(arr[4]);
+////    //                            due = due - amount;
+////    //                            arr[4] = Integer.toString(due);
+////    //                            
+////    //                        }
+////    //                        catch (NumberFormatException ex){
+////    //                            ex.printStackTrace();
+////    //                         }
+////    ////                        due = due - amount;
+////    //                        
+////    //                    }  
+////    //                }
+////    //            }
+////    //          
+////    //          for(int k=0;k<16;k++) {
+////    //              System.out.println(str[k]);
+////    //          }
+////              fr1.close();
+////              FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
+////              for(int k=0;k<15;k++) {
+////                fw1.write(str[k] + "\n");
+////            }
+////            fw1.write(str[15]);
+////
+////            fw1.close();
+////    //          fw1.close();
+//            } catch (FileNotFoundException ex) {
+//                Logger.getLogger(PayRent.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (IOException ex) {
+//                Logger.getLogger(PayRent.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            
+//        }
+//        
+//        catch (FileNotFoundException ex) {
+//            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+//        }catch (IOException ex) {
+//            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        

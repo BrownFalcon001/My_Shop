@@ -24,13 +24,118 @@ import java.io.FileWriter;
  * @author spifu
  */
 public class loginPage extends javax.swing.JFrame {
+
     /**
      * Creates new form loginPage
      */
     public loginPage() {
         initComponents();
+        DateTime t = new DateTime();
+        String ti = t.time;
+        System.out.println(ti);
+        System.out.println(ti);
+        String[] ans = ti.split(",");
+        int[] dt = new int[ans.length];
+        int[] month = new int[16];
+        int[] year  = new int[16];
+        int[] res  = new int[16];
+        for(int i = 0;i<3;i++) {
+            try{
+                dt[i] = Integer.parseInt(ans[i]);
+            }
+            catch (NumberFormatException ex){
+                ex.printStackTrace();
+            }
+        }
+//        System.out.println(dt[0]);
+        try {
+            FileReader fr = new FileReader("src\\dateTime.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String[] str = new String[16];
+            String line;
+            int i=0;
+            while ((line = br.readLine()) != null) {
+                str[i] = line;
+                i++;
+            }
+            fr.close();
+            for(int k=0;k<16;k++) {
+                String[] arr = str[k].split(",");
+                try{
+                    int a = Integer.parseInt(arr[2]);
+                    int b = Integer.parseInt(arr[3]);
+                    res[k] = (dt[1]-a) + (dt[2] - b)*12;
+                    
+//                    System.out.println(res[k]);
+                }
+                catch (NumberFormatException ex){
+                    ex.printStackTrace();
+                }
+            }
+            System.out.println(res[0]);
+            FileReader fr1 = new FileReader("src//ownerInfo.txt");
+//            FileWriter fw1 = new FileWriter("src//ownerInfo.txt");
+            BufferedReader br1 = new BufferedReader(fr1);
+            String[] str1 = new String[16];
+            String line1;
+            i =0;
+            while((line1=br1.readLine())!=null) {
+                str1[i] = line1;
+                i++;
+            }
+            fr1.close();
+            for(int k=0;k<16;k++) {
+                String[] arr1 = str1[k].split(",");
+                int x =0;
+                try{
+                    x = Integer.parseInt(arr1[4]);
+                    int yy = Integer.parseInt(arr1[3]);
+                    x = x + res[k]*yy;
+                    arr1[4] = arr1[4] = Integer.toString(x);
+                }
+                catch (NumberFormatException ex){
+                    ex.printStackTrace();
+                }
+                str1[k] = arr1[0];
+                for(int l = 1;l<6;l++) {
+                    str1[k] = str1[k] + "," + arr1[l];
+                }
+            }
+            
+//            System.out.println(str1[0]);
+            FileWriter fw = new FileWriter("src\\ownerInfo.txt", false);
+            for(int k=0;k<15;k++) {
+                fw.write(str1[k] + "\n");
+            }
+            fw.write(str1[15]);
+            
+            fw.close();
+            for(int k=0;k<16;k++) {
+                String[] arr4 = str[k].split(",");
+                arr4[2] = ans[1];
+                arr4[3] = ans[2];
+                str[k] = arr4[0];
+                for(int kk=1;kk<4;kk++) {
+                    str[k] = str[k] + "," +arr4[kk]; 
+                }
+                
+            }
+            FileWriter fw1 = new FileWriter("src\\dateTime.txt", false);
+            for(int k=0;k<15;k++) {
+                fw1.write(str[k] + "\n");
+            }
+            fw1.write(str[15]);
+            
+            fw1.close();
+        }
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (IOException ex) {
+            Logger.getLogger(shopInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -187,7 +292,7 @@ public class loginPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(icon, "Fill the Username and the Password", "Error", JOptionPane.ERROR_MESSAGE);
             username.setText("");
             password.setText("");
-        }
+        } 
         else if(pass.equals("")) {
             Component icon = null;
             JOptionPane.showMessageDialog(icon, "Fill the Password", "Error", JOptionPane.ERROR_MESSAGE);

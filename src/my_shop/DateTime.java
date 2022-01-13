@@ -13,7 +13,7 @@ import java.time.format.*;
  * @author Abrar Faiyaz Khan
  */
 public class DateTime {
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("<dd/MM/yyyy @ hh:mm:ss a>");
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd,MM,yyyy");
     LocalDateTime now = LocalDateTime.now();
 //        System.out.println(dtf.format(now));
         
