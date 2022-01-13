@@ -71,6 +71,8 @@ public class shopOwner_notif extends javax.swing.JFrame {
                 }
             }catch(IOException ex){
                 System.out.println("IOException" + ex);
+            }catch(ArrayIndexOutOfBoundsException ex){
+                System.out.println("Array index out of bound " + ex);
             }
             //System.out.println(uname);
             while((line=br.readLine())!=null){
@@ -98,6 +100,8 @@ public class shopOwner_notif extends javax.swing.JFrame {
             
         }catch(IOException ex){
             System.out.println("IOException "+ ex);
+        }catch(ArrayIndexOutOfBoundsException ex){
+            System.out.println("Array index out of bound "+ ex);
         }
     }
     
@@ -149,7 +153,7 @@ public class shopOwner_notif extends javax.swing.JFrame {
         jLabel8.setText("For :");
 
         jLabel9.setFont(new java.awt.Font("Sylfaen", 1, 20)); // NOI18N
-        jLabel9.setText("me");
+        jLabel9.setText("Me");
 
         LogOut.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         LogOut.setText("Log out");
@@ -167,10 +171,12 @@ public class shopOwner_notif extends javax.swing.JFrame {
             }
         });
 
+        notifiE.setEditable(false);
         notifiE.setColumns(20);
         notifiE.setRows(5);
         jScrollPane1.setViewportView(notifiE);
 
+        notifiP.setEditable(false);
         notifiP.setColumns(20);
         notifiP.setRows(5);
         jScrollPane2.setViewportView(notifiP);

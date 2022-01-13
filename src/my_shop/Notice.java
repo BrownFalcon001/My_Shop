@@ -236,7 +236,7 @@ public class Notice extends javax.swing.JFrame {
             noticeSt.setText("");
         }
         catch(IOException ex){
-            
+            System.out.println("IOException "+ex);
         }
     }//GEN-LAST:event_sendActionPerformed
 
