@@ -1,6 +1,6 @@
-1,owner11,shop11,40000,10000,owner11
-0,owner12,shop12,40000,10000,owner12
-1,owner13,shop13,40000,10000,owner13
+1,owner11,shop11,40000,0,owner11
+1,saifur,shop12,2345,0,kdfddfk
+0,owner13,shop13,40000,10000,owner13
 0,tausif,shop14,120,0,modnapendulum
 1,owner21,shop21,40000,10000,owner21
 1,owner22,shop22,40000,10000,owner22
